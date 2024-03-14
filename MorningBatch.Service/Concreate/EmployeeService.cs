@@ -35,17 +35,38 @@ namespace MorningBatch.Service.Concreate
 
         public bool DeleteEmployee(int employeeId)
         {
-            throw new NotImplementedException();
+            if(employeeId <0)
+            {
+                return false;
+            }
+            
+            return _employeeRepostiroy.DeleteEmployee(employeeId);  
         }
 
         public List<EmployeeViewModal> GetAllEmployees()
         {
-            throw new NotImplementedException();
+            var t = _employeeRepostiroy.GetAllEmployees().Select(y=> new EmployeeViewModal
+            {
+                FirstName = y.FirstName,    
+                Id = y.Id,
+                LastName = y.LastName,  
+
+            }).ToList();
+            return t;
         }
 
         public EmployeeViewModal GetEmployee(int employeeId)
         {
-            throw new NotImplementedException();
+            var p = _employeeRepostiroy.GetEmployee(employeeId);
+
+            var d = new EmployeeViewModal
+            {
+                FirstName = p.FirstName,
+                LastName = p.LastName,
+                Id = p.Id
+            };
+
+            return d;
         }
     }
 }

@@ -35,12 +35,12 @@ namespace MorningBatch.Repositroy.Concreate
 
         public List<Employee> GetAllEmployees()
         {
-          return _context.Employees.ToList();
+          return _context.Employees.OrderByDescending(y=>y.Id).ToList();
         }
 
         public Employee GetEmployee(int employeeId)
         {
-            throw new NotImplementedException();
+            return _context.Employees.Find(employeeId);
         }
     }
 }

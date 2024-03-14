@@ -16,14 +16,22 @@ namespace EMSMorningBatch.Controllers
         }
 
         public IActionResult ListEmployee()
+        
         {
+          
+            return View(service.GetAllEmployees());
+        }
+
+        public IActionResult Index(int? id)
+        {
+            if(id.HasValue)
+            {
+                return View(service.GetEmployee(id.Value));
+            }
+
             return View();
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpPost]
         public IActionResult Index(EmployeeViewModal employeeViewModal)
         {
@@ -35,6 +43,13 @@ namespace EMSMorningBatch.Controllers
             }
 
             return View();
+        }
+
+        public IActionResult DeleteEmployee(int employeeId)
+        {
+           var result = service.DeleteEmployee(employeeId);
+
+            return RedirectToAction("ListEmployee");
         }
     }
 }

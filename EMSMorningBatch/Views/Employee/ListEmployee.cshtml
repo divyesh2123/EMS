@@ -1,1 +1,20 @@
-﻿
+﻿@model List<MorningBatch.BussinessEntity.EmployeeViewModal>
+
+
+<table>
+
+
+    @foreach(var t in Model)
+    {
+
+        <tr>
+            <td>@t.FirstName</td>
+            <td>@t.LastName</td>
+        
+            <td><a asp-action="DeleteEmployee" asp-controller="Employee" asp-route-employeeId ="@t.Id">Delete</a></td>
+             <td><a asp-action="Index" asp-controller="Employee" asp-route-id ="@t.Id">Edit</a></td>
+        </tr>
+    }
+
+
+</table>
